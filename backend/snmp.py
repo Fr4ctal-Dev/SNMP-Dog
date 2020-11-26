@@ -1,9 +1,23 @@
-from pysnmp.hlapi import *
 import ipaddress
-import json
+
+from pysnmp.hlapi import *
 
 
 def get_devices(ip, mask):
+    """
+    Get all device info from specified network
+
+    Args:
+        ip: The networks IP address
+        mask: CIDR mask
+
+    Returns:
+        A dict containing the requested information
+
+    Raises:
+
+    """
+
     addr = ip + "/" + mask
     network = ipaddress.ip_network(addr, strict=False)
     values = ("sysDescr", "sysUpTime", "sysLocation", "sysName")
@@ -40,6 +54,22 @@ def get_devices(ip, mask):
 
 
 def get_iterator(ip, value, community_string, is_oid=False):
+    """
+        Get pysnmp iterator
+
+        Args:
+            ip: The device's IP address
+            value: MIB id or SNMP OID
+            community_string: The community string for the network. Usually 'public' or 'private'
+            is_oid: boolean if the provided #value is a OID or a MIB ID
+
+        Returns:
+            The usable iterator
+
+        Raises:
+
+        """
+
     return getCmd(SnmpEngine(),
                   CommunityData(community_string),
                   UdpTransportTarget((str(ip), 161)),
@@ -48,6 +78,21 @@ def get_iterator(ip, value, community_string, is_oid=False):
 
 
 def get_device_value(ip, value, community_string="public"):
+    """
+    Get value from specified device from MIB id
+
+    Args:
+        ip: The device's IP address
+        value: MIB value
+        community_string: The community string for the network. Usually 'public' or 'private'
+
+    Returns:
+        A dict containing the requested information
+
+    Raises:
+
+    """
+
     iterator = get_iterator(ip, value, community_string)
 
     error_indication, error_status, error_index, var_binds = next(iterator)
@@ -64,6 +109,21 @@ def get_device_value(ip, value, community_string="public"):
 
 
 def get_device_value_oid(ip, oid, community_string="public"):
+    """
+        Get value from specified device with OID
+
+        Args:
+            ip: The device's IP address
+            oid: SNMP OID
+            community_string: The community string for the network. Usually 'public' or 'private'
+
+        Returns:
+            A dict containing the requested information
+
+        Raises:
+
+        """
+
     iterator = get_iterator(ip, oid, community_string, is_oid=True)
 
     error_indication, error_status, error_index, var_binds = next(iterator)
@@ -77,19 +137,5 @@ def get_device_value_oid(ip, oid, community_string="public"):
         else:
             for varBind in var_binds:  # SNMP response contents
                 return str(varBind).split("=")[1].replace(" ", "")
-
-
-"""
-network = ipaddress.ip_network(input("Input CIDR address:"))
-values = ("sysDescr", "sysUpTime", "sysLocation", "sysName")
-
-json_data = json.dumps(get_devices(network, values), indent=4)
-print(json_data)
-
-
-oid = ".1.3.6.1.2.1.1.1.0"
-
-print(get_device_value_oid("10.10.30.1", oid))
-"""
 
 
