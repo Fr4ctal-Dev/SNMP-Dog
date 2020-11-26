@@ -6,7 +6,7 @@
 The backend is written in Python 3.7 and requires following packages:
 - `pysnmp`
 - `ipaddress`
-- `Flask`
+- `flask`
 - `request`
 - `json`
 
