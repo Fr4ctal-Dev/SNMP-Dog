@@ -23,5 +23,5 @@ CORS might cause problems...
 ## UI
 Bootstrap Dashboard
 
-!(https://github.com/Fr4ctal-Dev/snmp-tool/blob/master/frontend/Screenshot%202020-12-03%20at%2011.18.54.png)
+![Screenshot](https://github.com/Fr4ctal-Dev/snmp-tool/blob/master/frontend/Screenshot%202020-12-03%20at%2011.18.54.png?raw=true)
 
