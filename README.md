@@ -12,7 +12,15 @@ The backend is written in Python 3.7 and requires following packages:
 
 Which can all be installed by typing `pip3.7 install <package>` in the project terminal.
 
+### Frontend
+The frontend pulls data from the python flask API.
+CORS might cause problems...
+
 ## What's planned:
 - Sending *Traps* and/or *Informs*
-- A GUI in either Bootstrap and JS or in Svelte
+- Intelligent search bar that uses asynchronous API calls to scan large portions of a network. `10.10.30.0/24` in the search bar should return device info for all available devices in the specified network in roughly the time it takes to run a single request.
+
+## UI
+Bootstrap Dashboard
+!(url)
 
