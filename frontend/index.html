@@ -11,13 +11,15 @@
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
     <link href="dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
   </head>
 
   <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">snmp-tool</a>
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
+        snmp-tool
+      </a>
       <input class="form-control form-control-dark w-100" type="text" placeholder="Scan" aria-label="Search">
 
     </nav>
@@ -42,38 +44,7 @@
               </li>
             </ul>
 
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Saved reports</span>
-              <a class="d-flex align-items-center text-muted" href="#">
-                <span data-feather="plus-circle"></span>
-              </a>
-            </h6>
-            <ul class="nav flex-column mb-2">
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Current month
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Last quarter
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Social engagement
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Year-end sale
-                </a>
-              </li>
-            </ul>
+
           </div>
         </nav>
 
@@ -85,17 +56,17 @@
 
           <h2>Devices</h2>
           <div class="table-responsive">
-            <table class="table table-striped table-sm">
+            <table class="table table-striped table-sm" id="device-table">
               <thead>
                 <tr>
                   <th>IPv4</th>
                   <th>Name</th>
-                  <th>OS</th>
+                  <th>OS/Firmware</th>
                   <th>Location</th>
                   <th>Uptime</th>
                 </tr>
               </thead>
-              <tbody id="device-table">
+              <tbody id="device-table-body">
 
               </tbody>
             </table>
@@ -107,7 +78,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="assets/js/jquery-3.5.1.min.js"></script>
     <script>window.jQuery || document.write('<script src="assets/js/jquery-3.5.1.min.js"><\/script>')</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="assets/js/bootstrap.min.js"></script>
@@ -117,7 +88,7 @@
     <script>
       feather.replace()
     </script>
-
+    <script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="assets/js/main.js"></script>
   </body>
 </html>
