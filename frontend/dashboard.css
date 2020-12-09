@@ -91,3 +91,13 @@ body {
 
 .border-top { border-top: 1px solid #e5e5e5; }
 .border-bottom { border-bottom: 1px solid #e5e5e5; }
+
+
+
+td.details-control {
+  background: url('assets/img/down-chevron-24.png') no-repeat center center;
+  cursor: pointer;
+}
+tr.shown td.details-control {
+  background: url('assets/img/up-chevron-24.png') no-repeat center center;
+}
