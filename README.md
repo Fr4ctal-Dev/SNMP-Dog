@@ -30,6 +30,7 @@ TODO
 ## What's planned:
 - Sending *Traps* and/or *Informs*
 - MIB Table Operations
+- a complete cleanup or rewrite of the python SNMP engine
 - ~~Intelligent search bar that uses asynchronous API calls to scan large portions of a network. `10.10.30.0/24` in the search bar should return device info for all available devices in the specified network in roughly the time it takes to run a single request.~~ DONE
 
 ### What might be planned:
