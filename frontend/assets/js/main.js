@@ -56,7 +56,7 @@ function convertTimestamp(timestamp) {
     hours = Math.floor(totalSeconds / 3600);
     totalSeconds %= 3600;
     minutes = Math.floor(totalSeconds / 60);
-    seconds = totalSeconds % 60;
+    seconds = Math.floor(totalSeconds % 60);
 
     return days + "d " + hours + "h " + minutes + "min " + seconds + "s";
 
@@ -76,8 +76,29 @@ async function startCall(range) {
 
 function format(d) {
     // `d` is the original data object for the row
-
-    return  'CPU Load: <div class="progress">\n' +
+    switch (d[3]){
+        case "macOS":
+            imgsrc = "apple"
+            break
+        case "Windows":
+            imgsrc = "windows"
+            break
+        case "Linux":
+            imgsrc = "linux"
+            break
+        case "Mikrotik RouterOS":
+            imgsrc = "mikrotik"
+            break
+        default:
+            imgsrc = "generic"
+            break
+    }
+    return  '<div class="row">' +
+                '<div class="col-3">' +
+                    '<div class="os-img-box '+ imgsrc +'"></div>' +
+                '</div>' +
+            '</div>'
+            /* +'CPU Load: <div class="progress">\n' +
                 '  <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>\n' +
             '</div>' +
             'RAM Usage: <div class="progress">\n' +
@@ -85,7 +106,7 @@ function format(d) {
             '</div>' +
             'Disk Usage: <div class="progress">\n' +
                 '  <div class="progress-bar" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>\n' +
-            '</div>'
+            '</div>'*/
 }
 
 
