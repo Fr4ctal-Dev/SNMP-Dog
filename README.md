@@ -17,7 +17,8 @@ The backend is written in Python 3.7 and requires following packages:
 - `json`
 
 Which can all be installed by typing `pip3.7 install <package>` in the project terminal.
-The python script to run is `api.py` which can be runned with `python3.7 api.py`
+
+The python script to run is `api.py` which can be runned by typing `python3.7 api.py` in the project terminal
 
 ### Frontend
 The frontend should run out-of-the-box by opening `index.html` in a browser.
