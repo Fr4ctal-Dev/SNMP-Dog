@@ -74,8 +74,9 @@ async function startCall(range) {
 
 }
 
-function format(d) {
+async function format(d) {
     // `d` is the original data object for the row
+
     switch (d[3]){
         case "macOS":
             imgsrc = "apple"
@@ -93,20 +94,33 @@ function format(d) {
             imgsrc = "generic"
             break
     }
-    return  '<div class="row">' +
-                '<div class="col-3">' +
-                    '<div class="os-img-box '+ imgsrc +'"></div>' +
-                '</div>' +
-            '</div>'
-            /* +'CPU Load: <div class="progress">\n' +
-                '  <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>\n' +
+
+    let rowExtension =
+        '<div class="row">' +
+            '<div class="col-3">' +
+                '<div class="os-img-box '+ imgsrc +'"></div>' +
             '</div>' +
-            'RAM Usage: <div class="progress">\n' +
-                '  <div class="progress-bar" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">30%</div>\n' +
-            '</div>' +
-            'Disk Usage: <div class="progress">\n' +
-                '  <div class="progress-bar" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>\n' +
-            '</div>'*/
+        '</div>'
+    return new Promise(resolve =>  {
+         checkDisk(d).then(diskAmissable => {
+             if (diskAmissable) {
+                 getDiskData(d).then(diskData => {
+                     percentage = Math.floor(diskData.used/diskData.total *100)
+                     let diskInfoString = Math.floor(diskData.used * diskData.allocation / 1000000).toString() + "MB / " + Math.floor(diskData.total * diskData.allocation / 1000000).toString() + "MB"
+                     rowExtension = rowExtension +
+                         'Disk Usage: <div class="progress">\n' +
+                         '  <div class="progress-bar" role="progressbar" style="width: ' + percentage + '%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">' + diskInfoString + '</div>\n' +
+                         '</div>'
+                     resolve(rowExtension)
+                 })
+             }
+         })
+     })
+
+
+
+
+
 }
 
 
@@ -121,10 +135,21 @@ $('#device-table-body').on("click", 'td.details-control', function () {
         tr.removeClass('shown');
     } else {
         // Open this row
-        row.child(format(row.data())).show();
-        tr.addClass('shown');
+        format(row.data()).then((extension)=>{
+            console.log(extension)
+            row.child(extension).show()
+            tr.addClass('shown');
+        })
+
+
+
+
+
 
 
     }
 });
+
+
+
 
