@@ -101,3 +101,33 @@ td.details-control {
 tr.shown td.details-control {
   background: url('assets/img/up-chevron-24.png') no-repeat center center;
 }
+
+.os-img-box{
+  min-width: 100px;
+  min-height: 100px;
+  float: left;
+}
+
+.windows{
+  background: url("assets/img/os-windows.png") no-repeat center center;
+}
+
+.apple{
+  background: url("assets/img/os-apple.png") no-repeat center center;
+
+}
+
+.mikrotik{
+  background: url("assets/img/os-mikrotik.png") no-repeat center center;
+
+}
+
+.linux{
+  background: url("assets/img/os-linux.png") no-repeat center center;
+
+}
+
+.generic{
+  background: url("assets/img/os-generic.png") no-repeat center center;
+
+}
