@@ -97,29 +97,36 @@ async function format(d) {
 
     let rowExtension =
         '<div class="row">' +
-            '<div class="col-3">' +
+            '<div class="col-2">' +
                 '<div class="os-img-box '+ imgsrc +'"></div>' +
             '</div>' +
-        '</div>'
+            '<div class="col-10">'
     return new Promise(resolve =>  {
          checkDisk(d).then(diskAmissable => {
              if (diskAmissable) {
                  getDiskData(d).then(diskData => {
-                     percentage = Math.floor(diskData.used/diskData.total *100)
+
                      let diskInfoString = Math.floor(diskData.used * diskData.allocation / 1000000).toString() + "MB / " + Math.floor(diskData.total * diskData.allocation / 1000000).toString() + "MB"
                      rowExtension = rowExtension +
-                         'Disk Usage: <div class="progress">\n' +
-                         '  <div class="progress-bar" role="progressbar" style="width: ' + percentage + '%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">' + diskInfoString + '</div>\n' +
+                         'Disk Usage: ' + diskInfoString + '<div class="progress">\n' +
+                         '  <div class="progress-bar" role="progressbar" style="width: ' + diskData.percentage + '%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>\n' +
                          '</div>'
-                     resolve(rowExtension)
+
                  })
              }
+             getMemoryData(d).then(memoryData => {
+                 console.log(memoryData)
+                 let memoryInfoString = Math.floor(memoryData.used * memoryData.allocation/ 1000000).toString() + "MB / " + Math.floor(memoryData.total / 1000).toString() + "MB"
+                 rowExtension = rowExtension +
+                     'Memory Usage: ' + memoryInfoString + '<div class="progress">\n' +
+                     '  <div class="progress-bar" role="progressbar" style="width: ' + memoryData.percentage + '%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>\n' +
+                     '</div>'
+                     +
+                 '</div></div>'
+                 resolve(rowExtension)
+             })
          })
      })
-
-
-
-
 
 }
 
@@ -135,11 +142,15 @@ $('#device-table-body').on("click", 'td.details-control', function () {
         tr.removeClass('shown');
     } else {
         // Open this row
+        row.child("Loading").show();
         format(row.data()).then((extension)=>{
-            console.log(extension)
-            row.child(extension).show()
+
+
             tr.addClass('shown');
+            row.child(extension).show()
         })
+
+
 
 
 
