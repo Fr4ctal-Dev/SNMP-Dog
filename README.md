@@ -31,7 +31,7 @@ TODO
 
 ## What's planned:
 - Sending *Traps* and/or *Informs*
-- A custom request page
+- ~~A custom request page~~ DONE
 - Remove local libraries and rely on CDNs
 - ~~MIB Table Operations~~ DONE
 - ~~a complete cleanup or rewrite of the python SNMP engine~~ DONE
@@ -48,4 +48,5 @@ TODO
 Current Bootstrap Dashboard
 
 ![Screenshot](https://github.com/Fr4ctal-Dev/snmp-tool/blob/master/frontend/Screenshot%202020-12-10%20at%2009.10.36.png?raw=true)
+
 
