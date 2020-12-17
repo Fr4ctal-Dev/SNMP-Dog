@@ -47,6 +47,6 @@ TODO
 ## UI
 Current Bootstrap Dashboard
 
-![Screenshot](https://github.com/Fr4ctal-Dev/snmp-tool/blob/master/frontend/Screenshot%202020-12-10%20at%2009.10.36.png?raw=true)
+![Screenshot](https://github.com/Fr4ctal-Dev/snmp-tool/blob/master/frontend/Screenshot%202020-12-17%20at%2010.54.13.png)
 
 
