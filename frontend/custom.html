@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>snmp-tool</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <script src="assets/js/jquery-3.5.1.min.js"></script>
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    -->
+    <link href="dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+</head>
+
+<body>
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
+        snmp-tool
+    </a>
+
+
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <span data-feather="home"></span>
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="layers"></span>
+                            Traps/Informs
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <span data-feather="box"></span>
+                            Custom Request <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                </ul>
+
+
+            </div>
+        </nav>
+
+        <main role="main" class="col-10 ml-sm-auto pt-3 px-4">
+            <div class="row pb-2 mb-3 border-bottom">
+                <h1 class="h1">Custom Request</h1>
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-4">
+                            <label for="inputIP">IP Address</label>
+                            <input type="text" class="form-control" id="inputIP" placeholder="127.0.0.1">
+                        </div>
+                        <div class="form-group col-4">
+                            <label for="inputValue">Value</label>
+                            <input type="text" class="form-control" id="inputValue" placeholder="sysDescr">
+                        </div>
+                        <div class="form-group col-4">
+                            <label for="inputMIB">MIB</label>
+                            <input type="text" class="form-control" id="inputMIB" placeholder="SNMPv2-MIB">
+                        </div>
+                        <div class="form-group col-2 mb-2">
+                            <label for="inputTable">Table</label>
+                            <input type="number" class="form-control" id="inputTable" placeholder="0">
+                        </div>
+
+                    </div>
+
+                    <div  class="btn btn-primary" id="submitCustomRequest">Call</div>
+                </form>
+            </div>
+            <div class="row pb-2 mb-3 border-bottom">
+                    <pre>
+                        <code id="requestOutput">
+
+                        </code>
+                    </pre>
+            </div>
+
+        </main>
+
+        <!--
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <div class="row">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-4">
+                                <label for="inputIP">IP Address</label>
+                                <input type="text" class="form-control" id="inputIP" placeholder="127.0.0.1">
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="inputValue">Value</label>
+                                <input type="text" class="form-control" id="inputValue" placeholder="sysDescr">
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="inputMIB">MIB</label>
+                                <input type="text" class="form-control" id="inputMIB" placeholder="SNMPv3">
+                            </div>
+                            <div class="form-group col-2">
+                                <label for="inputTable">Table</label>
+                                <input type="number" class="form-control" id="inputTable" placeholder="1">
+                            </div>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Sign in</button>
+                    </form>
+                </div>
+                <div class="row">
+                    <pre>
+                        <code id="requestOutput">
+
+                        </code>
+                    </pre>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+-->
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        -->
+        <script src="assets/js/popper.js" integrity="sha256-XTVRuacdpNwgIYkZHlZ7l41PXNT7iu8IiY/okUbuXlM="
+                crossorigin="anonymous"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+
+        <!-- Icons
+        <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+        -->
+        <script src="assets/js/feather.js"></script>
+
+        <script>
+            feather.replace()
+        </script>
+        <!--
+        <script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        -->
+        <script src="assets/js/dataTables.js"></script>
+        <script src="assets/js/custom.js"></script>
+        <script src="assets/js/loadbars.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/search.js"></script>
+</body>
+</html>
