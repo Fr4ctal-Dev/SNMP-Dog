@@ -22,7 +22,7 @@ def get_iterator(ip, value, community_string, is_oid, table_op, mib):
 
     return getCmd(SnmpEngine(),
                   CommunityData(community_string),
-                  UdpTransportTarget((str(ip), 161), timeout=0.1, retries=0),
+                  UdpTransportTarget((str(ip), 161), timeout=0.2, retries=0),
                   ContextData(),
                   ObjectType(
                       ObjectIdentity(str(value)) if is_oid else ObjectIdentity(mib, str(value), table_op)))
@@ -45,7 +45,7 @@ def get_value(ip, value, community_string="public", is_oid=False, table_op=0, mi
 
 
 def get_full_table(ip, value, mib):
-    data = {ip: ip}
+    data = {}
     index = 0
     iterator = nextCmd(
         SnmpEngine(),
@@ -136,3 +136,5 @@ def replace_os(device_info):
         pass
 
     return device_info
+
+

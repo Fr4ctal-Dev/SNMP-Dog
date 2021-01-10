@@ -19,7 +19,9 @@ async function checkDisk(d) {
         .then(response => response.json())
         .then(result => {
             let driveLetter = result.hrStorageDescr[0]
-            return driveLetter === "C"
+            if (driveLetter === "C")
+                return true
+            else return result.hrStorageDescr === "systemdisk";
 
         })
 

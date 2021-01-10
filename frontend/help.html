@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SNMP-Dog</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <script
+            src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+            crossorigin="anonymous"></script>
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    -->
+    <link href="dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+</head>
+
+<body>
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0 pl-5" href="#">
+        SNMP-Dog
+    </a>
+
+
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <span data-feather="home"></span>
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="layers"></span>
+                            Traps/Informs
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="custom.html">
+                            <span data-feather="box"></span>
+                            Custom Request
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="help.html">
+                            <span data-feather="help-circle"></span>
+                            Help <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                </ul>
+
+
+            </div>
+        </nav>
+
+        <main role="main" class="col-10 ml-sm-auto pt-3 px-4">
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <h1>Welcome to the SNMP-Dog</h1>
+                    <div class="pb-2 mb-3 border-bottom">
+                        <h2>Introduction to SNMP</h2>
+                        SNMP stands for simple network management protocol. It is a way that servers can share
+                        information about
+                        their current state, and also a channel through which an administer can modify pre-defined
+                        values. While the protocol itself is very simple, the structure of programs that implement SNMP
+                        can be very complex.
+                        <br>
+                        SNMP is a protocol that is implemented on the application layer of the networking stack. The
+                        protocol was created as a way of gathering information from
+                        very different systems in a consistent manner. Although it can be used in connection to a
+                        diverse
+                        array of systems, the method of querying information and the paths to the relevant information
+                        are standardized.
+                    </div>
+                    <div class="pb-2 mb-3 border-bottom">
+                        <h2 class="h2">Versions</h2>
+                        There are multiple versions of the SNMP protocol, and many networked hardware devices implement
+                        some form of SNMP access. The most widely used version is SNMPv1, but it is in many ways
+                        insecure. Its popularity largely stems from its ubiquity and long time in the wild.
+                        SNMPv2 was the second version of the protocol, which offers some substantial improvements on the
+                        earlier standard. Included in this version was a new “party-based” security model meant to
+                        address the security issues inherent with the prior revision. However, the new model was not
+                        very popular because it was difficult to understand and implement.
+                        <br><br>
+                        Because of this, a few “spin-offs” of version 2 were created, each of which kept the bulk of the
+                        version 2 improvements, but swapped out the security model. In SNMPv2c, community-based
+                        authentication, the same model used in v1, was reintroduced.
+                        <br><br>
+                        In 1998, the third (and current) version of the SNMP protocol entered as a spec proposal. From a
+                        user’s perspective, the most relevant change was the adoption of a user-based security system.
+                        <br><br>
+                        SNMP-Dog uses the current version of the SNMP protocol; v3.
+                    </div>
+                    <div class="pb-2 mb-3 border-bottom">
+                        <h2 class="h2">Agents and Managers</h2>
+                        In general, a network being profiled by SNMP will mainly consist of devices containing SNMP
+                        agents. An agent is a program that can gather information about a piece of hardware, organize it
+                        into predefined entries, and respond to queries using the SNMP protocol.
+                        <br>
+                        SNMP agents do the bulk of the work. They are responsible for gathering information about the
+                        local system and storing them in a format that can be queried.updating a database called the
+                        “management information base”, or MIB.
+                        <br><br>
+                        The component of this model that queries agents for information is called an SNMP manager. These
+                        machines generally have data about all of the SNMP-enabled devices in their network and can
+                        issue requests to gather information and set certain properties.
+                        <br>
+                        The manager can be any machine that can send query requests to SNMP agents with the correct
+                        credentials. Sometimes, this is implemented as part of a monitoring suite, while other times
+                        this is an administrator using some simple utilities to craft a quick request.
+                        <br><br>
+                        SNMP-Dog is an SNMP manager.
+                    </div>
+                    <div class="pb-2 mb-3 border-bottom">
+                        <h2 class="h2">The MIB Structure</h2>
+                        The most difficult part of the SNMP system to understand is probably the MIB, or management
+                        information base. The MIB is a database that follows a standard that the manager and agents
+                        adhere to. It is a hierarchical structure that, in many areas, is globally standardized, but
+                        also flexible enough to allow vendor-specific additions.
+                        <br><br>
+                        The MIB structure is best understood as a top-down hierarchical tree. Each branch that forks off
+                        is labeled with both an identifying number (starting with 1) and an identifying string that are
+                        unique for that level of the hierarchy. You can use the strings and numbers interchangeably.
+                        <br><br>
+                        An example for a MIB is
+                        <pre>HOST-RESOURCES-MIB</pre>
+                        and an example for a MIB Value is
+                        <pre>sysDescr</pre>
+                        or its OID counterpart,
+                        <pre>.1.3.6.1.2.1.1.1.0</pre>
+                    </div>
+                    <div class="pb-2 mb-3 border-bottom">
+                        <h2 class="h2">Tables</h2>
+                        Sometimes, it makes sense to order MIB Values into tables to get easier access to larger amounts
+                        of logically similar data quickly.
+                        In this case a MIB Value points to a column of the table and the final integer of the OID can
+                        (but doesn't have to) point to the row of that column, which allows us to get the actual
+                        parameter we are looking for.
+                        <br><br>
+                        An example for this which the SNMP-Dog uses is the Storage Table. It makes sense for storage
+                        media to be stored to be saved in tables because usually a PC has quite a few storage devices.
+                    </div>
+                </div>
+                <div class="col-2"></div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+
+    <script src="assets/js/bootstrap.min.js"></script>
+
+
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+
+
+    <script>
+        feather.replace()
+    </script>
+
+    <script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/loadbars.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/search.js"></script>
+</body>
+</html>
