@@ -16,9 +16,9 @@ def get_single():
     print("\n" + ip + "> Request received")
 
     response_data = snmp_rewrite.request_wrapper(user_data)
-    print(response_data)
     #if len(response_data.values()) > 1:
     #    print("\n" + ip + "> Response sent")
+    #print(ip + "> " + response_data)
     return response_data
 
 
